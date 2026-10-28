@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "repository": "ashiqtasdid/scaros-releases",
+  "website": "https://ashiqtasdid.github.io/scaros-releases/",
+  "server": "https://github.com/ashiqtasdid/scaros-releases/releases/latest/download",
+  "signing_fingerprint": "0D88CA052EE7677DEAD049AEC0F5DF33037D1BF5",
+  "channel": "stable",
+  "bootstrap_package": "scaros-keyring"
+}

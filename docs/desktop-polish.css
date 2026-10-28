@@ -1,0 +1,12 @@
+/* ScarOS desktop refinement. Original artwork; Inter and Lucide are licensed. */
+@font-face{font-family:Inter;src:url('./fonts/InterVariable.ttf') format('truetype');font-style:normal;font-weight:100 900;font-display:swap}
+:root{--ink:#f0f2f6;--muted:#b5bac6;--surface:#1e222a;--group:#2b303a;--chrome:#282d36;font-family:Inter,'Segoe UI',sans-serif}
+#wallpaper img{width:100%;height:100%;object-fit:cover}#desktop[data-wallpaper] #wallpaper{filter:none;transition:none}
+.titlebar{background:rgb(40 45 54 / .72);height:52px;border-bottom:0}.window-title{font-size:13px;font-weight:600;letter-spacing:0}.window-title>.icon{width:15px;height:15px;color:var(--muted)}.sidebar,.settings-sidebar{background:rgb(40 45 54 / .72)}.window-body{background:transparent}.window{background:rgb(30 34 42 / var(--window-alpha,.85))}.window-controls button .icon{width:8px;height:8px;stroke-width:2.5}
+.settings-group{background:var(--group);border-radius:10px}.popup-menu{background:rgb(32 38 48 / var(--glass-alpha));border-radius:12px}.popover-title{font-weight:600;letter-spacing:0}
+#dock .dock-item{transition:filter 120ms;transform:translateY(calc(var(--lift,0) * -6px)) scale(calc(1 + var(--lift,0) * .18));transform-origin:center bottom}.dock-left #dock .dock-item{transform:translateX(calc(var(--lift,0) * 6px)) scale(calc(1 + var(--lift,0) * .18));transform-origin:left center}.dock-right #dock .dock-item{transform:translateX(calc(var(--lift,0) * -6px)) scale(calc(1 + var(--lift,0) * .18));transform-origin:right center}
+#dock .dock-item img{filter:drop-shadow(0 2px 2px #0003)}.wallpaper-option{background-image:var(--wallpaper-preview);background-size:cover;background-position:center}.wallpaper-option>span{background:#10172399;padding:4px 8px;border-radius:5px}
+@media(prefers-reduced-motion:reduce){#dock .dock-item{transform:none!important}}
+.reduce-motion #dock .dock-item{transform:none!important}
+
+.appearance-sample{background-size:cover;background-position:center}

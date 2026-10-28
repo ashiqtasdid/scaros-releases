@@ -1,0 +1,7 @@
+{
+  "source_version": "0.9.0",
+  "source_commit": "3c6f438f232bb7413c3788143df2d253e34cb580",
+  "kind": "design-preview",
+  "installable_release": false,
+  "notice": "This website simulates the desktop. A source push does not publish an OS update."
+}

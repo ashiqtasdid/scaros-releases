@@ -1,0 +1,205 @@
+/* Discovery surfaces: shared catalog, quiet collections and a keyboard-first search. */
+.window.maximized{
+ left:var(--work-left,0px)!important;top:0!important;
+ width:calc(100% - var(--work-left,0px) - var(--work-right,0px))!important;
+ height:calc(100% - var(--work-bottom,0px))!important;
+ max-height:none!important;min-width:0;min-height:0;border-radius:0;resize:none;
+}
+#dock-zone{transition:none}
+.dock-auto:not(.dock-left):not(.dock-right) #dock-zone{
+ bottom:0;padding:14px 12px;transform:translateX(-50%);pointer-events:none;
+}
+.dock-auto:not(.dock-left):not(.dock-right) #dock-zone:hover,.dock-auto:not(.dock-left):not(.dock-right) #dock-zone:focus-within{
+ bottom:0;transform:translateX(-50%);
+}
+.dock-auto #dock{pointer-events:auto;z-index:1;transition:transform 220ms var(--ease)}
+.dock-auto:not(.dock-left):not(.dock-right) #dock{transform:translateY(calc(100% + 28px))}
+.dock-auto.dock-left #dock-zone,.dock-auto.dock-left #dock-zone:hover,.dock-auto.dock-left #dock-zone:focus-within{left:0;right:auto;bottom:auto;padding:12px 10px;transform:translateY(-50%);pointer-events:none}
+.dock-auto.dock-right #dock-zone,.dock-auto.dock-right #dock-zone:hover,.dock-auto.dock-right #dock-zone:focus-within{right:0;left:auto;bottom:auto;padding:12px 10px;transform:translateY(-50%);pointer-events:none}
+.dock-auto.dock-left #dock{transform:translateX(calc(-100% - 20px))}
+.dock-auto.dock-right #dock{transform:translateX(calc(100% + 20px))}
+#desktop.dock-auto #dock-zone::before{display:block;content:'';position:absolute;left:0;right:0;bottom:0;top:auto;height:6px;width:auto;transform:none;pointer-events:auto;z-index:0}
+#desktop.dock-auto.dock-left #dock-zone::before{left:0;right:auto;top:0;bottom:0;width:6px;height:auto}
+#desktop.dock-auto.dock-right #dock-zone::before{left:auto;right:0;top:0;bottom:0;width:6px;height:auto}
+#desktop.dock-auto:not(.dock-left):not(.dock-right) #dock-zone:hover::before,#desktop.dock-auto:not(.dock-left):not(.dock-right) #dock-zone:focus-within::before{height:100%}
+#desktop.dock-auto.dock-left #dock-zone:hover::before,#desktop.dock-auto.dock-left #dock-zone:focus-within::before,#desktop.dock-auto.dock-right #dock-zone:hover::before,#desktop.dock-auto.dock-right #dock-zone:focus-within::before{width:100%}
+#desktop.dock-auto #dock-zone:hover #dock,#desktop.dock-auto #dock-zone:focus-within #dock{transform:none}
+.applications-content{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;background:#202023d9;zoom:var(--ui-scale)}
+.applications-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:25px 27px 21px;flex-shrink:0}
+.applications-header h2{font-size:22px}
+.applications-header p{font-size:12px;color:var(--muted);margin-top:4px}
+.applications-header .segmented button{width:30px;height:27px}
+.applications-toolbar{display:flex;align-items:center;gap:12px;padding:0 27px 18px;flex-shrink:0}
+.applications-toolbar .search-field{flex:1;width:auto;height:33px;background:#0002;padding:7px 10px}
+.applications-toolbar .search-field input{font-size:12px}
+.applications-toolbar select,.search-filters select{font-size:11px;color:#d0ced7;background:#303036;border:1px solid #ffffff12;border-radius:6px;padding:7px 9px;max-width:45%}
+.applications-filterbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 27px;padding-bottom:12px;border-bottom:1px solid #ffffff0c;flex-shrink:0}
+.collection-tabs{display:flex;align-items:center;gap:5px}
+.collection-tabs button{padding:5px 10px;font-size:12px;border-radius:6px;color:var(--muted);white-space:nowrap;transition:background 120ms,color 120ms}
+.collection-tabs button.active{background:#ffffff12;color:var(--ink)}
+.collection-tabs button:hover{background:#ffffff0c;color:var(--ink)}
+#application-count{color:var(--muted);font-size:11px;white-space:nowrap}
+.application-results{flex:1;min-height:0;overflow:auto;padding:19px 24px;align-content:start}
+.application-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:12px 10px}
+.application-item{position:relative;min-width:0;border-radius:10px;transition:background 120ms}
+.application-item:hover,.application-item:focus-within{background:#ffffff07}
+.application-launch{width:100%;display:flex;align-items:center;flex-direction:column;text-align:center;gap:11px;padding:16px 6px 15px;min-width:0;min-height:144px;border-radius:10px}
+.app-artwork{width:56px;height:56px;object-fit:contain;flex-shrink:0}
+.generic-artwork{display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#66616e,#403c47);box-shadow:inset 0 1px #ffffff32,0 3px 5px #0003;color:#e7e4eb}
+.generic-artwork.productivity{background:linear-gradient(145deg,#688598,#3e596b)}
+.generic-artwork.media{background:linear-gradient(145deg,#9a7b83,#604756)}
+.generic-artwork>.icon{width:28px;height:28px;stroke-width:1.45}
+.application-label{display:block;min-width:0}
+.application-label strong{display:block;font-size:12px;font-weight:550;overflow-wrap:anywhere;line-height:1.4}
+.application-description{display:block;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5}
+.application-status{color:var(--muted);font-size:11px;white-space:nowrap}
+.application-grid .application-status{display:none}
+.application-grid .is-running .application-label:after{content:'';display:block;width:3px;height:3px;border-radius:50%;background:#c4c0cc;margin:7px auto -10px}
+.app-favorite{position:absolute;top:7px;right:7px;width:25px;height:25px;display:grid;place-items:center;border-radius:5px;color:#96939f;opacity:0;transition:opacity 120ms,background 120ms}
+.app-favorite>.icon{width:14px;height:14px}
+.app-favorite.active{color:#c8bdd9;opacity:1}
+.app-favorite.active .icon{fill:#b2a3c440}
+.app-favorite:hover{background:#ffffff12}
+.application-item:hover .app-favorite,.application-item:focus-within .app-favorite{opacity:1}
+.application-list{padding:9px 27px 19px}
+.application-list .application-item{border-radius:7px;border-bottom:1px solid #ffffff07}
+.application-list .application-launch{min-height:72px;display:flex;flex-direction:row;text-align:left;padding:12px 46px 12px 10px;gap:13px;border-radius:7px}
+.application-list .app-artwork{width:39px;height:39px;border-radius:9px}
+.application-list .generic-artwork>.icon{width:22px;height:22px}
+.application-list .application-label{flex:1}
+.application-list .application-label strong{font-size:13px}
+.application-list .application-status{margin-left:auto}
+.application-list .app-favorite{top:23px;right:9px;opacity:1}
+.applications-footer{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:10px 27px;border-top:1px solid #ffffff0a;color:var(--muted);font-size:11px;flex-shrink:0}
+.applications-footer>span:last-child{display:flex;align-items:center;gap:6px}
+.applications-footer .icon{width:12px;height:12px}
+.application-results>.empty-state{grid-column:1/-1;padding:45px 20px}
+mark{background:none;color:#b9d9ff;font-weight:650}
+.collection-reveal{animation:collection-in 180ms var(--ease)}
+@keyframes collection-in{from{opacity:.6;transform:translateY(5px)}to{opacity:1;transform:none}}
+.search-shade{background:#0003;backdrop-filter:blur(2px)}
+.unified-search{top:clamp(40px,10%,90px);width:760px;height:510px;max-height:calc(100% - 100px);display:flex;flex-direction:column;border-radius:18px;background:rgb(36 34 43 / .9)}
+.unified-search .spotlight-input{height:67px;flex-shrink:0;padding:0 20px;gap:13px}
+.unified-search .spotlight-input input{font-size:21px;letter-spacing:-.025em}
+.spotlight-input:focus-within{box-shadow:inset 0 -1px #ffffff12}
+.search-dismiss{font-size:11px;color:var(--muted);border:1px solid #ffffff20;border-radius:5px;padding:2px 5px}
+.search-dismiss:hover{background:#ffffff15;color:white}
+.search-clear{width:22px;height:22px;flex-shrink:0}
+.search-clear .icon{width:13px;height:13px}
+.search-filters{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px 12px;flex-shrink:0}
+.search-filters .collection-tabs button{font-size:11px;padding:4px 12px}
+.search-filters select{padding:4px 8px;background:#ffffff08}
+.search-body{display:flex;min-height:0;height:354px;flex:1;overflow:hidden;border-top:1px solid #ffffff0c}
+.unified-search .search-results{border:0;flex:1;min-width:0;padding:9px;overflow:auto;scroll-behavior:auto}
+.search-section-label{display:flex;justify-content:space-between;padding:5px 10px 9px;font-size:11px;color:var(--muted)}
+.search-section-label span{font-variant-numeric:tabular-nums}
+.search-result{width:100%;display:flex;align-items:center;gap:11px;min-height:58px;padding:9px 11px;border-radius:8px;text-align:left;outline-offset:-2px!important;transition:background 100ms}
+.search-result.selected{background:#ffffff12}
+.search-result:hover{background:#ffffff16}
+.search-result .app-artwork{width:34px;height:34px;border-radius:8px}
+.search-result .generic-artwork>.icon{width:21px;height:21px}
+.search-result .file-glyph{margin:0 5px;width:24px;height:29px}
+.search-result .file-glyph.folder{height:21px}
+.search-result-text{flex:1;min-width:0}
+.search-result strong{display:block;font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search-result small{display:block;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+.search-result-kind{font-size:11px;color:var(--muted);white-space:nowrap}
+.search-detail{width:252px;min-width:220px;padding:25px 23px 18px;background:#00000015;border-left:1px solid #ffffff0c;text-align:center;overflow:auto}
+.search-detail-art{height:97px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.search-detail-art>.app-artwork{width:78px;height:78px;border-radius:18px}
+.search-detail-art>.generic-artwork .icon{width:40px;height:40px}
+.search-detail h3{font-size:15px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.detail-kind{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+.search-detail>p{font-size:12px;line-height:1.7;color:#c4c0ce;margin:17px 0;text-wrap:pretty}
+.search-detail dl{display:grid;grid-template-columns:auto 1fr;gap:9px 14px;font-size:11px;text-align:left;margin:22px 0 14px}
+.search-detail dt{color:var(--muted)}
+.search-detail dd{margin:0;text-align:right;overflow-wrap:anywhere}
+.search-detail-note{font-size:11px;color:var(--muted);line-height:1.6;margin-top:18px}
+.detail-favorite{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:#d4c9e0;padding:7px;border-radius:6px}
+.detail-favorite .icon{width:14px;height:14px}
+.detail-favorite:hover{background:#ffffff0c}
+.detail-favorite[aria-pressed=true] .icon{fill:#b2a3c440}
+.search-idle{height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--muted);gap:15px}
+.search-idle>.icon{width:30px;height:30px;opacity:.6}
+.search-idle p{font-size:12px;line-height:1.8}
+.unified-search .search-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 17px;flex-shrink:0;min-height:51px}
+.search-footer-actions{display:flex;align-items:center;gap:15px}
+.search-footer-actions .button{font-size:11px;min-height:27px;padding:3px 10px}
+.search-footer .keycap{font-family:inherit}
+.search-reveal{font-size:11px;color:#d0cbd9;display:flex;align-items:center;gap:7px}
+.search-reveal:hover{color:#fff}
+.unified-search .empty-state{padding:42px 20px}
+.unified-search .empty-state p{font-size:12px;line-height:1.6;margin-top:7px}
+@media(max-width:760px){
+ .applications-header{padding:21px 20px 17px}.applications-header h2{font-size:21px}
+ .applications-toolbar{padding:0 20px 16px}.applications-filterbar{margin:0 20px}
+ .application-results{padding:16px}.application-list{padding:8px 17px 15px}
+ .applications-footer{padding:10px 20px}.application-list .application-status{display:none}
+}
+@media(max-width:640px){
+ .search-detail{display:none}.unified-search{width:560px}
+ .unified-search .spotlight-input input{font-size:18px}.unified-search .spotlight-input{padding:0 16px;gap:10px}
+ .search-body{height:330px}.search-result{min-height:58px}
+ .unified-search .search-footer{padding:10px 14px}.search-footer-actions{gap:10px}
+ .search-reveal .keycap{display:none}
+}
+@media(max-width:480px){
+ .applications-header{gap:12px;padding:20px 16px 17px}.applications-header p{font-size:11px;max-width:23ch}
+ .applications-toolbar{gap:8px;padding:0 16px 15px}.applications-toolbar .search-field input{font-size:11px}
+ .applications-toolbar select{max-width:44%;padding:7px 4px;font-size:11px}
+ .applications-filterbar{margin:0 16px;gap:5px}.collection-tabs{gap:2px}.collection-tabs button{font-size:11px;padding:5px 8px}
+ .application-grid{grid-template-columns:repeat(auto-fill,minmax(89px,1fr));gap:10px 2px;padding:15px 11px}
+ .application-launch{min-height:141px;padding:18px 4px 14px}.app-artwork{width:49px;height:49px}
+ .application-label strong{font-size:11px}.application-description{font-size:11px}
+ .application-grid .app-favorite{right:1px;top:2px;width:24px;height:24px;opacity:1}
+ .application-list{padding:5px 12px 15px}.application-list .application-launch{padding-right:34px}
+ .application-list .application-description{max-width:27ch}.application-list .app-favorite{right:3px}
+ .applications-footer>span:last-child{display:none}.applications-footer{padding:9px 16px}
+ .search-result-kind{display:none}.search-dismiss{font-size:11px}.search-filters{padding:0 12px 11px}
+ .search-filters .collection-tabs button{padding:4px 10px}.search-filters select{max-width:47%;font-size:11px}
+ .search-footer .keycap{display:none}.search-footer-actions{gap:12px}
+ .unified-search .spotlight-input input{font-size:16px}.unified-search .spotlight-input{height:63px}
+}
+
+/* App shortcuts keep the established desktop artwork and quiet selection. */
+#desktop-shortcuts{position:absolute;top:48px;left:calc(var(--work-left,0px) + 14px);right:calc(var(--work-right,0px) + 124px);bottom:calc(var(--work-bottom,0px) + 28px);z-index:2;pointer-events:none;overflow:auto;scrollbar-width:thin}
+.desktop-shortcut-canvas{position:relative;min-height:100%}
+.desktop-app{position:absolute;pointer-events:auto;min-height:88px;padding:5px 2px;gap:5px;touch-action:manipulation}
+.desktop-app>span:last-child{max-width:88px;line-height:1.35;overflow-wrap:anywhere}
+.desktop-app-art{position:relative;display:block;width:50px;height:50px}
+.desktop-app-art>.app-artwork{width:50px;height:50px;border-radius:12px}
+.shortcut-arrow{position:absolute;left:-3px;bottom:-2px;background:#d9d8df;color:#292832;border-radius:3px;width:14px;height:14px;font-size:12px;line-height:14px;text-shadow:none}
+[data-shortcut-app]{cursor:grab}
+[data-shortcut-app]:active{cursor:grabbing}
+.shortcut-drag-source{opacity:.45}
+#dock .app-artwork{width:100%;height:100%;border-radius:calc(var(--dock-effective) * .23)}
+#dock .generic-artwork>.icon{width:52%;height:52%}
+.app-shortcut-menu{position:absolute;top:7px;left:7px;width:25px;height:25px;display:grid;place-items:center;border-radius:5px;color:#b0b0b8;opacity:0;transition:opacity 120ms,background 120ms}
+.app-shortcut-menu .icon{width:16px;height:16px}
+.application-item:hover .app-shortcut-menu,.application-item:focus-within .app-shortcut-menu{opacity:1}
+.app-shortcut-menu:hover{background:#ffffff12}
+.application-list .app-shortcut-menu{left:auto;right:39px;top:23px;opacity:1}
+.application-list .application-launch{padding-right:80px}
+.shortcut-menu-title{padding:5px 12px 8px;color:var(--muted);font-size:11px;border-bottom:1px solid #ffffff12;margin-bottom:4px}
+#desktop-drop-target{display:none;position:absolute;top:48px;left:calc(var(--work-left,0px) + 14px);width:188px;padding:18px 15px;z-index:450;border:1px dashed #ffffff60;border-radius:12px;background:#24232de6;backdrop-filter:blur(16px);pointer-events:auto;box-shadow:0 8px 24px #0004}
+#desktop-drop-target strong{display:block;font-size:12px;font-weight:550;line-height:1.5}
+#desktop-drop-target span{display:block;font-size:11px;line-height:1.5;color:var(--muted);margin-top:6px}
+.app-dragging #desktop-drop-target{display:block}
+.desktop-drop-active #desktop-drop-target{border-color:var(--accent);background:#252c3a}
+.app-dragging #dock-zone{pointer-events:auto!important;z-index:900}
+.app-dragging #desktop-drop-target{z-index:900}
+.app-dragging .search-shade{pointer-events:none}
+#dock-drop-target{display:none;position:absolute;inset:-16px -24px;z-index:-1;border:1px dashed #ffffff50;border-radius:20px;pointer-events:auto;background:#ffffff04}
+.app-dragging #dock-drop-target{display:block}
+#dock-drop-target>span{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);padding:6px 10px;border-radius:6px;background:#2b2935;color:var(--ink);font-size:12px;white-space:nowrap;box-shadow:0 4px 12px #0004;pointer-events:none}
+.dock-left #dock-drop-target>span{left:calc(100% + 8px);top:50%;bottom:auto;transform:translateY(-50%)}
+.dock-right #dock-drop-target>span{right:calc(100% + 8px);left:auto;top:50%;bottom:auto;transform:translateY(-50%)}
+.dock-drop-active #dock-drop-target{border-color:var(--accent);background:#0a84ff10}
+.application-grid .is-pinned .application-status{display:block;position:absolute;bottom:2px;left:0;right:0;text-align:center;pointer-events:none;font-size:10px}
+#desktop.app-dragging.dock-auto #dock{transform:none}
+#desktop.app-dragging.dock-auto #dock-zone::before{width:100%;height:100%;left:0;right:0;top:0;bottom:0}
+.dock-drop-active #dock{outline:1px solid var(--accent);outline-offset:3px}
+#dock .dock-insert-before:before{content:'';position:absolute;left:calc(-.5 * var(--dock-gap) - 2px);top:7px;bottom:7px;width:2px;background:var(--accent);border-radius:2px}
+.dock-left #dock .dock-insert-before:before,.dock-right #dock .dock-insert-before:before{left:7px;right:7px;top:calc(-.5 * var(--dock-gap) - 2px);bottom:auto;width:auto;height:2px}
+.app-dragging #dock .dock-item{transform:none!important}
+@media(max-width:480px){.app-shortcut-menu{opacity:1}.application-grid .app-shortcut-menu{left:1px;top:2px}.application-list .application-launch{padding-right:70px}.application-list .app-shortcut-menu{right:32px}#desktop-shortcuts{right:112px}}
