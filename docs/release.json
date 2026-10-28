@@ -1,7 +1,12 @@
 {
-  "source_version": "0.9.0",
-  "source_commit": "3c6f438f232bb7413c3788143df2d253e34cb580",
-  "kind": "design-preview",
+  "schema": 1,
+  "kind": "channel-bootstrap",
   "installable_release": false,
-  "notice": "This website simulates the desktop. A source push does not publish an OS update."
+  "package_version": "2026.10.28-2",
+  "package": "scaros-keyring-2026.10.28-2-any.pkg.tar.zst",
+  "channel": "stable",
+  "tag": "keyring-2026.10.28-2",
+  "source_commit": "e6c86236878717093d447cd7314a823225521c9a",
+  "signing_fingerprint": "0D88CA052EE7677DEAD049AEC0F5DF33037D1BF5",
+  "status": "staged-not-published"
 }
