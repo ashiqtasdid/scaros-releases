@@ -7,6 +7,10 @@ The development repository is separate and private.
 - Packages: https://github.com/ashiqtasdid/scaros-releases/releases
 - Stable repository: `https://github.com/ashiqtasdid/scaros-releases/releases/latest/download`
 
+Experimental installation images use separate **iso-v…-testing** prereleases.
+See the [download, signature verification and VMware guide](docs/INSTALL.md).
+Image releases never replace the stable package repository's latest URL.
+
 ScarOS is experimental. A keyring/bootstrap release configures update delivery;
 it does not replace the desktop or certify a new installation image.
 
